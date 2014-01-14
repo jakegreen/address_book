@@ -2,24 +2,27 @@
 
 /* Services */
 angular.module('addressBookApp.services', ['angularLocalStorage'])
-    .factory('SessionService', function($http, storage) {
+    .factory('SessionService', function ($http, storage) {
         return {
-            saveUserSession: function(data) {
+            saveUserSession: function (data) {
                 storage.set('user', data);
             },
-            getUserSession: function() {
+            getUserSession: function () {
                 return storage.get('user');
             },
-            removeUserSession: function() {
+            removeUserSession: function () {
                 storage.clearAll();
             },
-            isUserLoggedIn: function() {
+            isUserLoggedIn: function () {
                 return storage.get('user') != null;
             },
-            saveCurrentContact: function(data) {
+            saveCurrentContact: function (data) {
                 storage.set('contact', data);
             },
-            getCurrentContact: function() {
+            getCurrentContact: function () {
+                return storage.get('contact');
+            },
+            getCurrentProduct: function () {
                 return storage.get('contact');
             }
         };

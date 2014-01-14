@@ -2,23 +2,23 @@
 ** Load the appropriate models
  */
 
-var Contact = require('../models/contact.js');
+var Product = require('../models/product.js');
 
 /*
 ** GET requests
  */
 module.exports.list = function (req, res) {
-    Contact.find({}, function(err, contacts) {
+    Product.find({}, function(err, products) {
         if (err) {
             res.send(err);
         }
 
-//        contacts.forEach(function(contact) {
-//            console.log('Contact found: ' + contact._id);
+//        products.forEach(function(product) {
+//            console.log('Product found: ' + product._id);
 //        });
 
         res.json({
-            contacts: contacts
+            products: products
         });
     });
 };
@@ -29,20 +29,19 @@ module.exports.list = function (req, res) {
 
     http://www.stormpath.com/blog/put-or-post - provides a good explanation of POST vs. PUT requests
 */
-module.exports.addContact = function (req, res) {
+module.exports.addProduct = function (req, res) {
     // Create a contact in database
     var contact = new Contact ({
-        'first_name': req.body.first_name,
-        'last_name': req.body.last_name,
-        'email': req.body.email,
-        'created': req.body.created,
-        'phone': req.body.phone
+        'product_name': req.body.product_name,
+        'description': req.body.description,
+        'price': req.body.price,
+        'created': req.body.created
     });
 
     contact.save(function(err){
         if (err) {
-            console.log('Error saving contact: ' + err);
-            res.json({'error': 'addContact'});
+            console.log('Error saving product: ' + err);
+            res.json({'error': 'addProduct'});
         }
 
         res.json({
@@ -50,4 +49,3 @@ module.exports.addContact = function (req, res) {
         });
     });
 };
-

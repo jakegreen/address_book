@@ -16,6 +16,10 @@ div.starter-template
             input.form-control(type='text', name='email', ng-model='contact.email', placeholder='Email Address', required)
             span(ng-show="hasError('email')") Email is required
             span(ng-show="errorEmail") {{ errorEmail }}
+        .form-group
+            input.form-control(type='text', name='phone', ng-model='contact.phone', placeholder='Phone', required)
+            span(ng-show="hasError('phone')") Phone is required
+            span(ng-show="errorPhone") {{ errorPhone }}
         button.btn.btn-default(type='submit') Create Contact
         &nbsp;
         a(href='/')

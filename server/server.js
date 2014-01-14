@@ -77,6 +77,7 @@ app.configure(function() {
  */
 require('./routes/account')(app, passport, require('./controllers/account'));
 require('./routes/contact')(app, auth, require('./controllers/contact'));
+require('./routes/product')(app, auth, require('./controllers/product'));
 require('./routes/index')(app, require('./controllers/index'));
 
 // Let's create the server and list on the port defined in the configuration above

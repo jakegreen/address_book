@@ -25,6 +25,11 @@ html(ng-app="addressBookApp", ng-controller="BaseController")
                                 ul(class='dropdown-menu')
                                     li
                                         a(href='/addContact') Add Contact
+                        li(class='dropdown', ng-class='{active:isActive(["/products", "other"])}', logged-in)
+                            a(href='/products', class='dropdown-toggle') Products
+                                ul(class='dropdown-menu')
+                                    li
+                                        a(href='/addProduct') Add Product
                         li(class='dropdown', ng-class='{active:isActive(["/myAccount", "other"])}', logged-in)
                             a(href='/myAccount', class='dropdown-toggle') My Account
                                 ul(class='dropdown-menu')
