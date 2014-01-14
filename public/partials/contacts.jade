@@ -10,6 +10,26 @@ div.starter-template
         | -
         a(href='deleteContact/{{contact._id}}') Delete
 
+    table.table.table-hover
+        thead
+            tr
+                th
+                    a(href="", ng-click="predicate = 'last_name'; reverse=!reverse") Name
+                th Address
+                th
+                    a(href="", ng-click="predicate = 'zipcode'; reverse=!reverse") Location
+                th
+                    a(href="", ng-click="predicate = 'zipcode'; reverse=!reverse") Zip Code
+                th Phone Number
+                th E-mail
+        tbody
+            tr(ng-repeat='contact in contacts| orderBy:predicate:reverse')
+                td {{contact.last_name}}, {{contact.first_name}}
+                td {{contact.address}}
+                td {{contact.city}}, {{contact.state}}
+                td {{contact.zipcode}}
+                td {{contact.phone}}
+                td {{contact.email}}
     //div
     //    pre Current Editable Contact
     //        br
