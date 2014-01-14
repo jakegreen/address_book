@@ -121,7 +121,12 @@ angular.module('addressBookApp.controllers', [])
             var contact = {
                 'first_name': $scope.contact.first_name,
                 'last_name': $scope.contact.last_name,
+                'phone' : $scope.contact.phone,
                 'email': $scope.contact.email,
+                'address': $scope.contact.address,
+                'city': $scope.contact.city,
+                'state': $scope.contact.state,
+                'zipcode': $scope.contact.zipcode,
                 'created': new Date()
             };
 

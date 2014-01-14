@@ -4,7 +4,7 @@ div.starter-template
     form.form-signin(ng-submit="doLogin()", name="loginForm", novalidate)
         h2.form-signin-heading {{ loginTitle }}
 
-        input.form-control(type="text", name="email", placeholder="Email Address", ng-model="user.email", required, autofocus)
+        input.form-control(type="email", name="email", placeholder="Email Address", ng-model="user.email", required, autofocus)
         span(ng-show="hasError('email')") Email address is required
         span(ng-show="errorUsername") {{ errorUsername }}
 

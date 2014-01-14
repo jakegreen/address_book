@@ -1,8 +1,11 @@
 div.starter-template
-    p There are {{contacts.length}} contacts
+    p There are {{contacts.length}} contacts.
     div(ng-repeat='contact in contacts')
         h3 {{contact.first_name}} {{contact.last_name}}
+        div {{contact.address}}
+        div {{contact.city}}, {{contact.state}} {{contact.zipcode}}
         div {{contact.email}}
+        div {{contact.phone}}
         a(href='editContact/{{contact._id}}') Edit
         | -
         a(href='deleteContact/{{contact._id}}') Delete
