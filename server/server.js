@@ -17,13 +17,13 @@ var auth = require('./services/auth');
 /*
     App Configuration Section
  */
-var app = module.exports = express(); // Creates our app with express support
+var app = module.exports = express(); // Creates our app with express support - saying here are all our configurations
 app.configure(function() {
     /*
     ** Session setup and passport initialization
      */
     app.use(express.cookieParser());
-    app.use(express.session( { secret: 'securedsession' }));
+    app.use(express.session( { secret: 'securedsession' })); //TODO: need to research, change secret to "salt" - gives to all users then users customize
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -53,7 +53,7 @@ app.configure(function() {
         This explicitly handles route requests from the browser.  For example, http://localhost:3000/about will
         try and locate a route ( app.get('/about...) ) that matches.
      */
-    app.use(app.router);
+    app.use(app.router); /*Sets up routing with node, using routing capability that exists*/
 
     app.set('port', process.env.PORT || 3000); // Sets the port based on the environment or to 3000
     app.set('views', __dirname + '/../public'); // Jade views will be found under public (also under partials)
@@ -79,9 +79,11 @@ require('./routes/account')(app, passport, require('./controllers/account'));
 require('./routes/contact')(app, auth, require('./controllers/contact'));
 require('./routes/product')(app, auth, require('./controllers/product'));
 require('./routes/index')(app, require('./controllers/index'));
-
+/*Create most specific routes on top, least towards bottom.*/
 // Let's create the server and list on the port defined in the configuration above
 var http = require('http');
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+//TODO: Research passport and express, then node.
