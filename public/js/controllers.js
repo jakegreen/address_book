@@ -3,10 +3,10 @@
 /* Controllers */
 
 angular.module('addressBookApp.controllers', [])
-    .controller('BaseController', ['$scope', '$location', '$window', 'Restangular', 'SessionService', function ($scope, $location, $window, Restangular, SessionService) {
+    .controller('BaseController', ['$scope', '$location', '$window', 'Restangular', 'SessionService', function($scope, $location, $window, Restangular, SessionService) {
         $scope.userSession = SessionService.getUserSession();
 
-        $scope.isActive = function (viewLocation) {
+        $scope.isActive = function(viewLocation) {
             if (typeof viewLocation == "object") {
                 var active = false;
                 for (var i = 0; i < viewLocation.length; i++) {
@@ -20,24 +20,24 @@ angular.module('addressBookApp.controllers', [])
             }
         };
 
-        $scope.doLogout = function () {
+        $scope.doLogout = function() {
             Restangular.one('account/logout').post()
-                .then(function (data) {
+                .then(function(data) {
                     SessionService.removeUserSession();
                     $window.location = '/';
-                }), function (response) {
+                }), function(response) {
                 $scope.message = response;
             };
         };
     }])
-    .controller('LoginController', ['$scope', '$window', 'loginTitle', 'Restangular', 'SessionService', function ($scope, $window, loginTitle, Restangular, SessionService) {
+    .controller('LoginController', ['$scope', '$window', 'loginTitle', 'Restangular', 'SessionService', function($scope, $window, loginTitle, Restangular, SessionService) {
         $scope.user = {}
 
-        $scope.register = function () {
+        $scope.register = function() {
             $window.location = '/register';
         }
 
-        $scope.doLogin = function () {
+        $scope.doLogin = function() {
             console.log('Logging in user: ' + $scope.user.email);
             var user = {
                 'email': $scope.user.email,
@@ -45,7 +45,7 @@ angular.module('addressBookApp.controllers', [])
             };
 
             Restangular.all('account/login').customPOST(user)
-                .then(function (data) {
+                .then(function(data) {
                     if (data == 'Unauthorized') {
                         $scope.errorMessage = 'Invalid username and/or password';
                     } else {
@@ -53,12 +53,12 @@ angular.module('addressBookApp.controllers', [])
                         $scope.userSession = data;
                         $window.location = '/home';
                     }
-                }), function (response) {
+                }), function(response) {
                 $scope.errorMessage = response;
             };
         }
 
-        $scope.hasError = function (field, validation) {
+        $scope.hasError = function(field, validation) {
             if (validation) {
                 return $scope.loginForm[field].$dirty && $scope.loginForm[field].$error[validation];
             }
@@ -67,13 +67,13 @@ angular.module('addressBookApp.controllers', [])
 
         $scope.loginTitle = loginTitle;
     }])
-    .controller('IndexController', ['$scope', '$http', function ($scope, $http) {
+    .controller('IndexController', ['$scope', '$http', function($scope, $http) {
 
     }])
-    .controller('RegisterController', ['$scope', '$window', 'registerConstants', 'Restangular', 'SessionService', function ($scope, $window, registerConstants, Restangular, SessionService) {
+    .controller('RegisterController', ['$scope', '$window', 'registerConstants', 'Restangular', 'SessionService', function($scope, $window, registerConstants, Restangular, SessionService) {
         $scope.user = {}
 
-        $scope.doRegister = function () {
+        $scope.doRegister = function() {
             var user = {
                 'email': $scope.user.email,
                 'password': $scope.user.password,
@@ -84,16 +84,16 @@ angular.module('addressBookApp.controllers', [])
             };
 
             Restangular.all('account/register').customPOST(user)
-                .then(function (data) {
+                .then(function(data) {
                     SessionService.saveUserSession(data);
                     $window.location = '/home';
-                }), function (response) {
+                }), function(response) {
                 console.log('Register error: ' + response);
                 $scope.errorMessage = response;
             };
         }
 
-        $scope.hasError = function (field, validation) {
+        $scope.hasError = function(field, validation) {
             if (validation) {
                 return $scope.registerForm[field].$dirty && $scope.registerForm[field].$error[validation];
             }
@@ -104,20 +104,24 @@ angular.module('addressBookApp.controllers', [])
         $scope.registerTitle = registerConstants['title'];
         $scope.registerSubTitle = registerConstants['subTitle'];
     }])
-    .controller('ContactController', ['$scope', 'Restangular', 'SessionService', function ($scope, Restangular, SessionService) {
+    .controller('ContactController', ['$scope', 'Restangular', 'SessionService', function($scope, Restangular, SessionService) {
         Restangular.all('api/contacts').customGET()
-            .then(function (data) {
+            .then(function(data) {
                 $scope.contacts = data.contacts;
-            }), function (response) {
+            }), function(response) {
             console.log("Error retrieving contacts: " + response);
         };
 
         $scope.contact = SessionService.getCurrentContact();
     }])
-    .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function ($scope, $window, contactConstants, Restangular, SessionService) {
+    .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
         $scope.contact = {}
 
-        $scope.addContact = function () {
+        $scope.funStuff = function() {
+            console.log("I'm a function!");
+        }
+
+        $scope.addContact = function() {
             var contact = {
                 'first_name': $scope.contact.first_name,
                 'last_name': $scope.contact.last_name,
@@ -131,15 +135,15 @@ angular.module('addressBookApp.controllers', [])
             };
 
             Restangular.all('api/contact').customPOST(contact)
-                .then(function (data) {
+                .then(function(data) {
                     SessionService.saveCurrentContact(data.contact);
                     $window.location = '/contacts';
-                }), function (response) {
+                }), function(response) {
                 $scope.errorMessage = response;
             };
         };
 
-        $scope.hasError = function (field, validation) {
+        $scope.hasError = function(field, validation) {
             if (validation) {
                 return $scope.contactForm[field].$dirty && $scope.contactForm[field].$error[validation];
             }
@@ -152,13 +156,13 @@ angular.module('addressBookApp.controllers', [])
     }])
     .controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function ($scope, Restangular, SessionService) {
         Restangular.all('api/products').customGET()
-            .then(function (data) {
+            .then(function(data) {
                 $scope.products = data.products;
-            }), function (response) {
+            }), function(response) {
             console.log("Error retrieving products: " + response);
         };
 
-        $scope.addProduct = function () {
+        $scope.addProduct = function() {
             var contact = {
                 'product_name': $scope.contact.product_name,
                 'description': $scope.contact.description,
@@ -166,15 +170,15 @@ angular.module('addressBookApp.controllers', [])
             };
 
             Restangular.all('api/contact').customPOST(contact)
-                .then(function (data) {
+                .then(function(data) {
                     SessionService.saveCurrentProduct(data.Product);
                     $window.location = '/products';
-                }), function (response) {
+                }), function(response) {
                 $scope.errorMessage = response;
             };
         };
 
-        $scope.hasError = function (field, validation) {
+        $scope.hasError = function(field, validation) {
             if (validation) {
                 return $scope.productForm[field].$dirty && $scope.productForm[field].$error[validation];
             }
