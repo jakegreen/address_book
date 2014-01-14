@@ -35,8 +35,7 @@ module.exports.addContact = function (req, res) {
         'first_name': req.body.first_name,
         'last_name': req.body.last_name,
         'phone' : req.body.phone,
-        'email': req.body.email,
-\
+        'email' : req.body.email,
         'address' : req.body.address,
         'city' : req.body.city,
         'state' : req.body.state,
