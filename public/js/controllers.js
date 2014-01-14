@@ -117,10 +117,6 @@ angular.module('addressBookApp.controllers', [])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
         $scope.contact = {}
 
-        $scope.funStuff = function() {
-            console.log("I'm a function!");
-        }
-
         $scope.addContact = function() {
             var contact = {
                 'first_name': $scope.contact.first_name,
