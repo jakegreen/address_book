@@ -34,13 +34,12 @@ module.exports.addContact = function (req, res) {
     var contact = new Contact ({
         'first_name': req.body.first_name,
         'last_name': req.body.last_name,
-        'phone' : req.body.phone,
+        'phone': req.body.phone,
         'email': req.body.email,
-\
-        'address' : req.body.address,
-        'city' : req.body.city,
-        'state' : req.body.state,
-        'zipcode' : req.body.zipcode,
+        'address': req.body.address,
+        'city': req.body.city,
+        'state': req.body.state,
+        'zipcode': req.body.zipcode,
         'created': req.body.created
     });
 
@@ -55,4 +54,3 @@ module.exports.addContact = function (req, res) {
         });
     });
 };
-
