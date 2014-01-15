@@ -5,15 +5,15 @@ div.starter-template
     p.lead sub title
     form.form-register(role='form', name='productForm', ng-submit='addProduct()', style='max-width: 300px;', ng-disabled='disabled')
         .form-group
-            input.form-control(type='text', name='product_name', ng-model='contact.product_name', placeholder='Product Name', required)
+            input.form-control(type='text', name='product_name', ng-model='product.product_name', placeholder='Product Name', required)
             span(ng-show="hasError('product_name')") Product name is required
             span(ng-show="errorProductName") {{ errorProductName }}
         .form-group
-            input.form-control(type='text', name='description', ng-model='contact.description', placeholder='description', required)
+            input.form-control(type='text', name='description', ng-model='product.description', placeholder='description', required)
             span(ng-show="hasError('description')") Description is required
             span(ng-show="errorDescription") {{ errorDescription }}
         .form-group
-            input.form-control(type='test', name='email', ng-model='contact.price', placeholder='Price', required)
+            input.form-control(type='test', name='email', ng-model='product.price', placeholder='Price', required)
             span(ng-show="hasError('price')") Price is required
             span(ng-show="errorPrice") {{ errorPrice }}
 

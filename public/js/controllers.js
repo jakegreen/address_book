@@ -115,7 +115,7 @@ angular.module('addressBookApp.controllers', [])
         $scope.contact = SessionService.getCurrentContact();
     }])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
-        $scope.contact = {}
+        $scope.contact = {};
 
         $scope.addContact = function() {
             var contact = {
@@ -150,36 +150,13 @@ angular.module('addressBookApp.controllers', [])
         $scope.contactTitle = contactConstants['title'];
         $scope.contactSubTitle = contactConstants['subTitle'];
     }])
-    .controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function ($scope, Restangular, SessionService) {
+    .controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function($scope, Restangular, SessionService) {
+        $scope.products.poop = 'brown';
         Restangular.all('api/products').customGET()
             .then(function(data) {
                 $scope.products = data.products;
             }), function(response) {
             console.log("Error retrieving products: " + response);
-        };
-
-        $scope.addProduct = function() {
-            var contact = {
-                'product_name': $scope.contact.product_name,
-                'description': $scope.contact.description,
-                'price': $scope.contact.price
-            };
-
-            Restangular.all('api/contact').customPOST(contact)
-                .then(function(data) {
-                    SessionService.saveCurrentProduct(data.Product);
-                    $window.location = '/products';
-                }), function(response) {
-                $scope.errorMessage = response;
-            };
-        };
-
-        $scope.hasError = function(field, validation) {
-            if (validation) {
-                return $scope.productForm[field].$dirty && $scope.productForm[field].$error[validation];
-            }
-
-            return $scope.productForm[field].$dirty && $scope.productForm[field].$invalid;
         };
 
         $scope.product = SessionService.getCurrentProduct();

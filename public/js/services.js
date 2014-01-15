@@ -23,7 +23,7 @@ angular.module('addressBookApp.services', ['angularLocalStorage'])
                 return storage.get('contact');
             },
             getCurrentProduct: function () {
-                return storage.get('contact');
+                return storage.get('product');
             }
         };
     })

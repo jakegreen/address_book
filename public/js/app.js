@@ -96,14 +96,14 @@ angular.module('addressBookApp', [
             }).
             when('/products', {
                 templateUrl: 'partials/products',
-                controller: 'ProductsController',
+                controller: 'ProductController',
                 resolve: {
                     loggedin: checkLoggedin
                 }
             }).
             when('/addProduct', {
                 templateUrl: 'partials/addProduct',
-                controller: 'ProductsController',
+                controller: 'ProductController',
                 resolve: {
                     loggedin: checkLoggedin
                 }
