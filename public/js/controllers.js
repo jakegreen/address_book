@@ -116,6 +116,7 @@ angular.module('addressBookApp.controllers', [])
     }])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
         $scope.contact = {}
+        $scope.states = ['Arizona', 'Texas', 'Utah'];
 
         $scope.addContact = function() {
             var contact = {
@@ -137,7 +138,7 @@ angular.module('addressBookApp.controllers', [])
                 }), function(response) {
                 $scope.errorMessage = response;
             };
-        };
+        }
 
         $scope.hasError = function(field, validation) {
             if (validation) {
