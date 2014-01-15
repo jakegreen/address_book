@@ -118,6 +118,7 @@ angular.module('addressBookApp.controllers', [])
         $scope.contact = {};
 
         $scope.addContact = function() {
+            console.log('bla');
             var contact = {
                 'first_name': $scope.contact.first_name,
                 'last_name': $scope.contact.last_name,
