@@ -36,7 +36,7 @@ div.starter-template(ng-controller="AddContactController")
             input.form-control(type='text', name='zipcode', ng-model='contact.zipcode', placeholder='Zip Code', required)
             span(ng-show="hasError('zipcode')")
             span(ng-show="errorZipcode") {{ errorZipCode }}
-    button.btn.btn-default(type='submit') Create Contact
-    &nbsp;
-    a(href='/')
-        button.btn.btn-primary(type="button") Cancel
+        button.btn.btn-default(type='submit') Create Contact
+        &nbsp;
+        a(href='/')
+            button.btn.btn-primary(type="button") Cancel
