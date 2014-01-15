@@ -26,7 +26,8 @@ div.starter-template
                 td {{contact.email}}
                 td
                     input(type='checkbox', checked=false)
-
+    p.button
+        input(type='button', value='Delete Contacts')
     a(href='editContact/{{contact._id}}') Edit
     | -
     a(href='deleteContact/{{contact._id}}') Delete
