@@ -1,13 +1,16 @@
 div.starter-template
-    p There are {{products.length}} products
-    div(ng-repeat='product in products')
-        h3 {{product.first_name}} {{product.last_name}}
-        div {{product.email}}
-        a(href='editContact/{{product._id}}') Edit
-        | -
-        a(href='deleteContact/{{product._id}}') Delete
-
-    //div
-    //    pre Current Editable Contact
-    //        br
-    //        span(ng-bind="product | json")
+    div.container
+        div.content
+                table.table.table-hover
+                    thead
+                        tr
+                            th
+                                a(href="", ng-click="predicate = 'last_name'; reverse=!reverse") Product Name
+                            th Description
+                            th
+                                a(href="", ng-click="predicate = 'status'; reverse=!reverse") Price
+                    tbody
+                        tr(ng-repeat='product in products| orderBy:predicate:reverse')
+                            td {{ product.product_name }}
+                            td {{ product.description }}
+                            td {{ product.price }}

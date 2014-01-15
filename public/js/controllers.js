@@ -115,10 +115,11 @@ angular.module('addressBookApp.controllers', [])
         $scope.contact = SessionService.getCurrentContact();
     }])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
-        $scope.contact = {}
+        $scope.contact = {};
         $scope.states = ['Arizona', 'Texas', 'Utah'];
 
         $scope.addContact = function() {
+            console.log('bla');
             var contact = {
                 'first_name': $scope.contact.first_name,
                 'last_name': $scope.contact.last_name,
@@ -151,24 +152,20 @@ angular.module('addressBookApp.controllers', [])
         $scope.contactTitle = contactConstants['title'];
         $scope.contactSubTitle = contactConstants['subTitle'];
     }])
-    .controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function ($scope, Restangular, SessionService) {
-        Restangular.all('api/products').customGET()
-            .then(function(data) {
-                $scope.products = data.products;
-            }), function(response) {
-            console.log("Error retrieving products: " + response);
-        };
+    .controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function($scope, $window, Restangular, SessionService) {
+        $scope.product = {};
 
         $scope.addProduct = function() {
-            var contact = {
-                'product_name': $scope.contact.product_name,
-                'description': $scope.contact.description,
-                'price': $scope.contact.price
+
+            var product = {
+                'product_name': $scope.product.product_name,
+                'description': $scope.product.description,
+                'price': $scope.product.price
             };
 
-            Restangular.all('api/contact').customPOST(contact)
+            Restangular.all('api/product').customPOST(product)
                 .then(function(data) {
-                    SessionService.saveCurrentProduct(data.Product);
+                    SessionService.saveCurrentProduct(data.product);
                     $window.location = '/products';
                 }), function(response) {
                 $scope.errorMessage = response;
@@ -181,6 +178,13 @@ angular.module('addressBookApp.controllers', [])
             }
 
             return $scope.productForm[field].$dirty && $scope.productForm[field].$invalid;
+        };
+
+        Restangular.all('api/products').customGET()
+            .then(function(data) {
+                $scope.products = data.products;
+            }), function(response) {
+            console.log("Error retrieving products: " + response);
         };
 
         $scope.product = SessionService.getCurrentProduct();

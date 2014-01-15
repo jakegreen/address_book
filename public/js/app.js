@@ -48,8 +48,6 @@ angular.module('addressBookApp', [
                         return response;
                     },
                     function (response) {
-                        console.log('Response: ' + JSON.stringify(response));
-                        console.log('URL: ' + response.config.url + ' and ' + response.config.data.email);
                         if (response.config.method == 'POST' && response.config.url.indexOf('login') != -1) {
                             return response;
                         } else {
@@ -96,14 +94,14 @@ angular.module('addressBookApp', [
             }).
             when('/products', {
                 templateUrl: 'partials/products',
-                controller: 'ProductsController',
+                controller: 'ProductController',
                 resolve: {
                     loggedin: checkLoggedin
                 }
             }).
             when('/addProduct', {
                 templateUrl: 'partials/addProduct',
-                controller: 'ProductsController',
+                controller: 'ProductController',
                 resolve: {
                     loggedin: checkLoggedin
                 }
