@@ -18,13 +18,13 @@ div.starter-template
                 th Delete Contact
         tbody
             tr(ng-repeat='contact in contacts| orderBy:predicate:reverse')
-                td {{contact.last_name}}, {{contact.first_name}}
-                td {{contact.address}}
-                td {{contact.city}}, {{contact.state}}
-                td {{contact.zipcode}}
-                td {{contact.phone}}
-                td {{contact.email}}
-                td
+                td.text-left {{contact.last_name}}, {{contact.first_name}}
+                td.text-left {{contact.address}}
+                td.text-left {{contact.city}}, {{contact.state}}
+                td.text-left {{contact.zipcode}}
+                td.text-left {{contact.phone}}
+                td.text-left {{contact.email}}
+                td.text-left
                     input(type='checkbox', checked=false)
     p.button
         input(type='button', value='Delete Contacts')
