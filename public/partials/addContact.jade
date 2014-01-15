@@ -28,8 +28,8 @@ div.starter-template
             input.form-control(type='text', name='city', ng-model='contact.city', placeholder='City', required)
             span(ng-show="hasError('city')") City is required
             span(ng-show="errorCity") {{ errorCity }}
-        .form-group
-            input.form-control(type='text', name='state', ng-model='contact.state', placeholder='State', required)
+        .dropdown-menu
+            input.form-control(type='text', name='zipcode', ng-model='contact.zipcode', placeholder='Zip Code', required)
             span(ng-show="hasError('state')") State is required
             span(ng-show="errorState") {{ errorState }}
         .form-group

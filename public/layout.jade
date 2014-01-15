@@ -25,15 +25,18 @@ html(ng-app="addressBookApp", ng-controller="BaseController")
                                 ul(class='dropdown-menu')
                                     li
                                         a(href='/addContact') Add Contact
+                                        a(href='/contacts') View Contacts
                         li(class='dropdown', ng-class='{active:isActive(["/products", "other"])}', logged-in)
                             a(href='/products', class='dropdown-toggle') Products
                                 ul(class='dropdown-menu')
                                     li
                                         a(href='/addProduct') Add Product
+                                        a(href='/products') View Products
                         li(class='dropdown', ng-class='{active:isActive(["/myAccount", "other"])}', logged-in)
                             a(href='/myAccount', class='dropdown-toggle') My Account
                                 ul(class='dropdown-menu')
                                     li
+                                        a(href='/') Edit Account Info
                                         a(href='javascript:void(0);', ng-click='doLogout()') Logout
         div(ng-view).container
         //hr
