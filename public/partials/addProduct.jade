@@ -13,7 +13,7 @@ div.starter-template
             span(ng-show="hasError('description')") Description is required
             span(ng-show="errorDescription") {{ errorDescription }}
         .form-group
-            input.form-control.text-left(type='test', name='price', ng-model='product.price', placeholder='Price', required)
+            input.form-control(type='test', name='price', ng-model='product.price', placeholder='Price', required)
             span(ng-show="hasError('price')") Price is required
             span(ng-show="errorPrice") {{ errorPrice }}
 

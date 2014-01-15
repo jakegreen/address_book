@@ -30,6 +30,7 @@ div.starter-template(ng-controller="AddContactController")
             span(ng-show="errorCity") {{ errorCity }}
         .dropdown-menu
             input.form-control(type='text', name='zipcode', ng-model='contact.zipcode', placeholder='Zip Code', required)
+
             span(ng-show="hasError('state')") State is required
             span(ng-show="errorState") {{ errorState }}
         .form-group

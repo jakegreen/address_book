@@ -11,6 +11,6 @@ div.starter-template
                                 a(href="", ng-click="predicate = 'status'; reverse=!reverse") Price
                     tbody
                         tr(ng-repeat='product in products| orderBy:predicate:reverse')
-                            td {{ product.product_name }}
-                            td {{ product.description }}
-                            td {{ product.price }}
+                            td.text-left {{ product.product_name }}
+                            td.text-left {{ product.description }}
+                            td.text-left {{ product.price }}

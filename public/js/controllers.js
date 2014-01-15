@@ -113,12 +113,12 @@ angular.module('addressBookApp.controllers', [])
         };
 
         $scope.contact = SessionService.getCurrentContact();
+
     }])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
         $scope.contact = {};
-
+        $scope.states = [Utah, Idaho, Mexico];
         $scope.addContact = function() {
-            console.log('bla');
             var contact = {
                 'first_name': $scope.contact.first_name,
                 'last_name': $scope.contact.last_name,
