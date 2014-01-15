@@ -15,7 +15,7 @@ div.starter-template
                     a(href="", ng-click="predicate = 'zipcode'; reverse=!reverse") Zip Code
                 th Phone Number
                 th E-mail
-                th Delete Contacts
+                th Delete Contact
         tbody
             tr(ng-repeat='contact in contacts| orderBy:predicate:reverse')
                 td {{contact.last_name}}, {{contact.first_name}}
