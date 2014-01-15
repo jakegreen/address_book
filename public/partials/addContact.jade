@@ -7,7 +7,7 @@ div.starter-template(ng-controller="AddContactController")
         .form-group
             input.form-control(type='text', name='first_name', ng-model='contact.first_name', placeholder='First name', required)
             span(ng-show="hasError('first_name')") First name is required
-            span(ng-show="errorFirstName") {{ errorFirstName }}
+            span(ng-show="errorFirstName" ng-bind="errorFirstName")
         .form-group
             input.form-control(type='text', name='last_name', ng-model='contact.last_name', placeholder='Last name', required)
             span(ng-show="hasError('last_name')") Last name is required

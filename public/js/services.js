@@ -22,6 +22,9 @@ angular.module('addressBookApp.services', ['angularLocalStorage'])
             getCurrentContact: function () {
                 return storage.get('contact');
             },
+            saveCurrentProduct: function (data) {
+                storage.set('contact', data);
+            },
             getCurrentProduct: function () {
                 return storage.get('product');
             }

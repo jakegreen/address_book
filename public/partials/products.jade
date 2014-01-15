@@ -1,45 +1,16 @@
 div.starter-template
-    p There are {{products.length}} products
-    div(ng-repeat='product in products')
-        h3 {{product.product_name}} {{product.description}}
-        div {{product.price}}
-        a(href='editContact/{{product_id}}') Edit
-        |
-        a(href='deleteContact/{{product._id}}') Delete
-
     div.container
         div.content
-            table.table.table-striped
-                thead
-                    tr
-                        th Product Name
-                        th Decription
-                        th Price | {{ product.poop }}
-                tbody
-                    tr (ng-repeat='product in products')
-                        td {{ product.product_name }}
-                        td {{ product.description }}
-                        td {{ product.price }}
-
-    table.table.table-hover
-               thead
-                   tr
-                       th
-                           a(href="", ng-click="predicate = 'last_name'; reverse=!reverse") Last Name
-                       th First Name
-                       th
-                           a(href="", ng-click="predicate = 'status'; reverse=!reverse") Status
-                       th Phone Number
-                       th E-mail
-               tbody
-                   tr(ng-repeat='client in clients| orderBy:predicate:reverse')
-                       td {{client.last_name}}
-                       td {{client.first_name}}
-                       td {{client.status}}
-                       td {{client.phone}}
-                       td {{client.email}}
-
-    //div
-    //    pre Current Editable Contact
-    //        br
-    //        span(ng-bind="product | json")
+                table.table.table-hover
+                    thead
+                        tr
+                            th
+                                a(href="", ng-click="predicate = 'last_name'; reverse=!reverse") Product Name
+                            th Description
+                            th
+                                a(href="", ng-click="predicate = 'status'; reverse=!reverse") Price
+                    tbody
+                        tr(ng-repeat='product in products| orderBy:predicate:reverse')
+                            td {{ product.product_name }}
+                            td {{ product.description }}
+                            td {{ product.price }}

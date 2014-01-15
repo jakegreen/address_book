@@ -151,8 +151,34 @@ angular.module('addressBookApp.controllers', [])
         $scope.contactTitle = contactConstants['title'];
         $scope.contactSubTitle = contactConstants['subTitle'];
     }])
-    .controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function($scope, Restangular, SessionService) {
-        $scope.products.poop = 'brown';
+    .controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function($scope, $window, Restangular, SessionService) {
+        $scope.product = {};
+
+        $scope.addProduct = function() {
+
+            var product = {
+                'product_name': $scope.product.product_name,
+                'description': $scope.product.description,
+                'price': $scope.product.price
+            };
+
+            Restangular.all('api/product').customPOST(product)
+                .then(function(data) {
+                    SessionService.saveCurrentProduct(data.product);
+                    $window.location = '/products';
+                }), function(response) {
+                $scope.errorMessage = response;
+            };
+        };
+
+        $scope.hasError = function(field, validation) {
+            if (validation) {
+                return $scope.productForm[field].$dirty && $scope.productForm[field].$error[validation];
+            }
+
+            return $scope.productForm[field].$dirty && $scope.productForm[field].$invalid;
+        };
+
         Restangular.all('api/products').customGET()
             .then(function(data) {
                 $scope.products = data.products;

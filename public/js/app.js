@@ -48,8 +48,6 @@ angular.module('addressBookApp', [
                         return response;
                     },
                     function (response) {
-                        console.log('Response: ' + JSON.stringify(response));
-                        console.log('URL: ' + response.config.url + ' and ' + response.config.data.email);
                         if (response.config.method == 'POST' && response.config.url.indexOf('login') != -1) {
                             return response;
                         } else {
