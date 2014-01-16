@@ -123,6 +123,9 @@ angular.module('addressBookApp.controllers', [])
             };
         };
 
+        $scope.openModal = function (contactId) {
+            $scope.target = '#' + contactId;
+        }
     }])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
         $scope.contact = {};
