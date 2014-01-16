@@ -50,6 +50,21 @@ module.exports.addProduct = function (req, res) {
     });
 };
 
+module.exports.getProduct = function (req, res) {
+    Product.find({'_id': req.params.id}, function (err, product) {
+        if (err) {
+            res.send(err);
+        }
+        res.json({
+            product: product
+        });
+
+    });
+
+
+};
+
+
 module.exports.deleteProduct = function (req, res) {
     Product.find({'_id': req.params.id}, function (err, product) {
         if (err) {

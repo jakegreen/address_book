@@ -232,6 +232,17 @@ angular.module('addressBookApp.controllers', [])
                 $scope.errorMessage = response;
             };
         };
+    }])
+    .controller('EditProduct', ['$scope', '$http', '$routeParams', 'Restangular', function($scope, $http, $routeParams, Restangular) {
+
+        $scope.productId = $routeParams.id;
+
+        Restangular.one('api/product/' + $scope.productId).customGET()
+            .then(function (data) {
+                $scope.product = data.product[0];
+            });
+
+
     }]);
  /*   .controller('ModalDemoCtrl', ['$scope', '$items', '$modalInstance', function ($scope, $modal, $items, $modalInstance) {
 

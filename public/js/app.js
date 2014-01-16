@@ -106,6 +106,13 @@ angular.module('addressBookApp', [
                     loggedin: checkLoggedin
                 }
             }).
+            when('/editProduct/:id', {
+                templateUrl: 'partials/editProduct',
+                controller: 'EditProduct',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            }).
             otherwise({
                 redirectTo: '/'
             });
