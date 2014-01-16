@@ -233,7 +233,7 @@ angular.module('addressBookApp.controllers', [])
             };
         };
     }])
-    .controller('EditProduct', ['$scope', '$http', '$routeParams', 'Restangular', function($scope, $http, $routeParams, Restangular) {
+    .controller('EditProduct', ['$scope', '$http', '$routeParams', 'Restangular', '$window', function($scope, $http, $routeParams, Restangular, $window) {
 
         $scope.productId = $routeParams.id;
 
@@ -241,6 +241,15 @@ angular.module('addressBookApp.controllers', [])
             .then(function (data) {
                 $scope.product = data.product[0];
             });
+
+        $scope.editProduct = function() {
+
+        Restangular.one('api/product/' + $scope.productId).customPUT($scope.product)
+            .then(function (data) {
+                $window.location = '/products';
+            });
+
+        }
 
 
     }]);
