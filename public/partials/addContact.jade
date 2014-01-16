@@ -29,12 +29,9 @@ div.starter-template
                 span(ng-show="hasError('city')") City is required
                 span(ng-show="errorCity") {{ errorCity }}
         .form-group
-            select.form-control(name='state', ng-model='contact.state', required)
-                option(value='UT') Utah
-                option(value='ID') Idaho
-                option(value='TX') Texas
-                span(ng-show="hasError('state')") State is required
-                span(ng-show="errorState") {{ errorState }}
+            select.form-control(name='state', ng-model='contact.state', ng-options="s for s in states", required)
+            span(ng-show="hasError('state')") State is required
+            span(ng-show="errorState") {{ errorState }}
         .form-group
             input.form-control(type='text', name='zipcode', ng-model='contact.zipcode', placeholder='Zip Code', required)
                 span(ng-show="hasError('zipcode')")

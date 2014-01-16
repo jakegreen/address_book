@@ -104,7 +104,7 @@ angular.module('addressBookApp.controllers', [])
         $scope.registerTitle = registerConstants['title'];
         $scope.registerSubTitle = registerConstants['subTitle'];
     }])
-    .controller('ContactController', ['$scope', 'Restangular', 'SessionService', function($scope, Restangular, SessionService) {
+    .controller('ContactController', ['$scope', 'Restangular', 'SessionService', function($scope, Restangular, SessionService ) {
         Restangular.all('api/contacts').customGET()
             .then(function(data) {
                 $scope.contacts = data.contacts;
@@ -125,11 +125,35 @@ angular.module('addressBookApp.controllers', [])
 
         $scope.openModal = function (contactId) {
             $scope.target = '#' + contactId;
-        }
+        };
+
+        //modal stuff
+/*        $scope.items = ['item1', 'item2', 'item3'];
+
+        $scope.open = function () {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'myModalContent.html',
+                controller: ModalInstanceCtrl,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };*/
+
+
     }])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
         $scope.contact = {};
-        $scope.states = ['Arizona', 'Texas', 'Utah'];
+        $scope.states = ['Arizona', 'Texas', 'Utah', 'Idaho'];
         $scope.addContact = function() {
             var contact = {
                 'first_name': $scope.contact.first_name,
@@ -199,4 +223,29 @@ angular.module('addressBookApp.controllers', [])
         };
 
         $scope.product = SessionService.getCurrentProduct();
+
+        $scope.deleteProduct = function (productId) {
+            Restangular.one('api/product/' + productId).remove()
+                .then(function (data) {
+                    $scope.products = data.products;
+                }), function (response) {
+                $scope.errorMessage = response;
+            };
+        };
     }]);
+ /*   .controller('ModalDemoCtrl', ['$scope', '$items', '$modalInstance', function ($scope, $modal, $items, $modalInstance) {
+
+        $scope.items = items;
+        $scope.selected = {
+            item: $scope.items[0]
+        };
+
+        $scope.ok = function () {
+            $modalInstance.close($scope.selected.item);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+
+    }]);*/

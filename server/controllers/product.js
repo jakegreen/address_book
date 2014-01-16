@@ -49,3 +49,29 @@ module.exports.addProduct = function (req, res) {
         });
     });
 };
+
+module.exports.deleteProduct = function (req, res) {
+    Product.find({'_id': req.params.id}, function (err, product) {
+        if (err) {
+            res.send(err);
+        }
+
+        product.forEach(function (product) {
+            product.remove(function (err, response) {
+                if (err) {
+                    res.send(err);
+                }
+
+                Product.find({}, function (err, products) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    res.json({
+                        products: products
+                    });
+                });
+            })
+        });
+    });
+};
