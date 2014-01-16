@@ -114,6 +114,15 @@ angular.module('addressBookApp.controllers', [])
 
         $scope.contact = SessionService.getCurrentContact();
 
+        $scope.deleteContact = function (contactId) {
+            Restangular.one('api/contact/' + contactId).remove()
+                .then(function (data) {
+                    $scope.contacts = data.contacts;
+                }), function (response) {
+                $scope.errorMessage = response;
+            };
+        };
+
     }])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function($scope, $window, contactConstants, Restangular, SessionService) {
         $scope.contact = {};

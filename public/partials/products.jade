@@ -1,16 +1,19 @@
 div.starter-template
     div.container
         div.content
+            form(role='form', name='productList', ng-submit='deleteProduct()', ng-disabled='disabled')
                 table.table.table-hover
                     thead
                         tr
-                            th
-                                a(href="", ng-click="predicate = 'last_name'; reverse=!reverse") Product Name
+                            th: a(href="", ng-click="predicate = 'last_name'; reverse=!reverse") Product Name
                             th Description
-                            th
-                                a(href="", ng-click="predicate = 'status'; reverse=!reverse") Price
+                            th: a(href="", ng-click="predicate = 'status'; reverse=!reverse") Price
+                            th Select
                     tbody
                         tr(ng-repeat='product in products| orderBy:predicate:reverse')
                             td.text-left {{ product.product_name }}
                             td.text-left {{ product.description }}
                             td.text-left {{ product.price }}
+                            td.text-left: input(type='checkbox', checked=false, ng-value="ids", id="{{product._id}}")
+            .btn-toolbar
+                button.btn.btn-danger(type='button', value='submit') Delete

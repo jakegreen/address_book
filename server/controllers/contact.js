@@ -55,3 +55,29 @@ module.exports.addContact = function (req, res) {
     });
 };
 
+module.exports.deleteContact = function (req, res) {
+    Contact.find({'_id': req.params.id}, function (err, contacts) {
+        if (err) {
+            res.send(err);
+        }
+
+        contacts.forEach(function (contact) {
+            //            console.log('Contact found: ' + contact._id);
+            contact.remove(function (err, response) {
+                if (err) {
+                    res.send(err);
+                }
+
+                Contact.find({}, function (err, contacts) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    res.json({
+                        contacts: contacts
+                    });
+                });
+            })
+        });
+    });
+};
