@@ -1,21 +1,27 @@
 div.starter-template
-    div#messages(ng-show="errorMessage" ) {{ errorMessage }}
+    div.container
+        div#messages(ng-show="errorMessage" ) {{ errorMessage }}
+        h1 Add a Product
+        form.form-horizontal(role='form', name='productForm', ng-submit='addProduct()', ng-disabled='disabled')
+            .form-group
+                label.col-sm-2.col-lg-offset-2.control-label Product Name
+                .col-sm-4
+                    input.form-control(type='text', name='product_name', ng-model='product.product_name', placeholder='Product Name', required)
+                    span(ng-show="hasError('product_name')") Product name is required
+                    span(ng-show="errorProductName") {{ errorProductName }}
+            .form-group
+                label.col-sm-2.control-label.col-lg-offset-2 Description
+                .col-sm-4
+                    input.form-control(type='text', name='description', ng-model='product.description', placeholder='description', required)
+                    span(ng-show="hasError('description')") Description is required
+                    span(ng-show="errorDescription") {{ errorDescription }}
+            .form-group
+                label.col-sm-2.control-label.col-lg-offset-2 Price
+                .col-sm-4
+                    input.form-control(type='test', name='price', ng-model='product.price', placeholder='Price', required)
+                    span(ng-show="hasError('price')") Price is required
+                    span(ng-show="errorPrice") {{ errorPrice }}
 
-    h1 Add a Product
-    form.form-register(role='form', name='productForm', ng-submit='addProduct()', style='max-width: 300px;', ng-disabled='disabled')
-        .form-group
-            input.form-control(type='text', name='product_name', ng-model='product.product_name', placeholder='Product Name', required)
-                span(ng-show="hasError('product_name')") Product name is required
-                span(ng-show="errorProductName") {{ errorProductName }}
-        .form-group
-            input.form-control(type='text', name='description', ng-model='product.description', placeholder='description', required)
-                span(ng-show="hasError('description')") Description is required
-                span(ng-show="errorDescription") {{ errorDescription }}
-        .form-group
-            input.form-control(type='test', name='price', ng-model='product.price', placeholder='Price', required)
-                span(ng-show="hasError('price')") Price is required
-                span(ng-show="errorPrice") {{ errorPrice }}
-
-        .btn-toolbar.btn-group-lg
-            button.btn.btn-info(type='submit') Create Product
-            button.btn.btn-default(ng-click='goto('products'), type="button") Cancel
+            .btn-toolbar.btn-group-md
+                button.btn.btn-info(type='submit') Create Product
+                button.btn.btn-default(href='/', type="button") Cancel
