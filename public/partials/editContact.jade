@@ -16,7 +16,7 @@ div.starter-template
         .form-group
             input.form-control(type='text', name='city', ng-model='contact.city')
         .form-group
-            select.form-control(name='state', ng-model='contact.state')
+            select.form-control(name='state', ng-model='contact.state', ng-options='state for state in states')
         .form-group
             input.form-control(type='text', name='zipcode', ng-model='contact.zipcode')
         .btn-toolbar
