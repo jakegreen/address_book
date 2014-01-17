@@ -14,6 +14,11 @@ div.container
                     td.text-left {{ product.product_name }}
                     td.text-left {{ product.description }}
                     td.text-left {{ product.price }}
-                    td: a.btn.btn-danger(href='javascript:void(0);', ng-click='deleteProduct(product._id)') Delete
-                    td: a.btn.btn-default(href='editProduct/{{product._id}}') Edit
-
+                    td
+                        .btn-group
+                            button.btn.dropdown-toggle(data-toggle="dropdown")
+                                i.glyphicon.glyphicon-cog
+                            ul.dropdown-menu
+                                li: a(href='editProduct/{{product._id}}') Edit
+                                li.divider
+                                li: a(href='javascript:void(0);', ng-click='deleteProduct(product._id)') Delete
