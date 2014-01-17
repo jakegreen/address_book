@@ -39,6 +39,6 @@ div.starter-template
             input.form-control(type='text', name='zipcode', ng-model='contact.zipcode', placeholder='Zip Code', required)
                 span(ng-show="hasError('zipcode')")
                 span(ng-show="errorZipcode") {{ errorZipCode }}
-        .btn-toolbar
+        .btn-toolbar.btn-group-lg
             button.btn.btn-info(type='submit') Create Contact
             button.btn.btn-default(href='/', type="button") Cancel

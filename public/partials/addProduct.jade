@@ -16,6 +16,6 @@ div.starter-template
                 span(ng-show="hasError('price')") Price is required
                 span(ng-show="errorPrice") {{ errorPrice }}
 
-        .btn-toolbar
+        .btn-toolbar.btn-group-lg
             button.btn.btn-info(type='submit') Create Product
-            button.btn.btn-default(href='/', type="button") Cancel
+            button.btn.btn-default(ng-click='goto('products'), type="button") Cancel

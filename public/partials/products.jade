@@ -8,7 +8,7 @@ div.container
                     th Description
                     th: a(href="", ng-click="predicate = 'price'; reverse=!reverse") Price
                     th
-                    th.text-center Select
+                    th
             tbody
                 tr(ng-repeat='product in products| orderBy:predicate:reverse')
                     td.text-left {{ product.product_name }}

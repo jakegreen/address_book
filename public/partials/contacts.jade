@@ -14,7 +14,6 @@ div.starter-template
                     th E-mail
                     th
                     th
-                    th.text-center Select
             tbody
                 tr(ng-repeat='contact in contacts| orderBy:predicate:reverse')
                     td.text-left {{contact.last_name}}, {{contact.first_name}}
@@ -26,21 +25,6 @@ div.starter-template
                     td.text-left {{contact.email}}
                     td: button.btn.btn-danger(href='javascript:void(0);', ng-click='deleteContact(contact._id)') Delete
                     td: a.button.btn.btn-warning(href='editContact/{{contact._id}}') Edit
-
-                    //td: button.btn.btn-danger(data-toggle="modal", data-target='{{target}}', ng-click='openModal(contact._id)') Delete
-                    td.text-center: input(type='checkbox', checked=false)
-                    //    div.modal.fade(id="{{target}}", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-                    //        div.modal-dialog
-                    //            div.modal-content
-                    //                div.modal-header
-                    //                    button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-                    //                    h4.modal-title(id='myModalLabel') Are you sure you want to delete?
-                    //                div.modal-body
-                    //                    p Warning!! You are about to delete {{contact.first_name}} {{contact.last_name}} ...
-                    //                div.modal-footer
-                    //                    button.btn.btn-danger(href='javascript:void(0);', ng-click='deleteContact(contact._id)') Delete
-                    //                    button.btn.btn-default(data-dismiss="modal") Close
-
                 tr
                     td: button.btn.btn-danger(type='button', ng-click='deleteContact($scope.deleteList)') Delete Selected
                     td: a.button.btn.btn-success(href='addContact/') Add Contact
