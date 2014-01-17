@@ -118,7 +118,6 @@ module.exports.deleteContact = function (req, res) {
         }
 
         contacts.forEach(function (contact) {
-            //            console.log('Contact found: ' + contact._id);
             contact.remove(function (err, response) {
                 if (err) {
                     res.send(err);
