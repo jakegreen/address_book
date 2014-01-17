@@ -27,6 +27,12 @@ angular.module('addressBookApp.services', ['angularLocalStorage'])
             },
             getCurrentProduct: function () {
                 return storage.get('product');
+            },
+            saveCurrentAccount: function (data) {
+                storage.set('account', data);
+            },
+            getCurrentAccount: function () {
+                return storage.get('account');
             }
         };
     })

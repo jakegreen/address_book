@@ -49,3 +49,46 @@ module.exports.register_p = function (req, res) {
         }
     );
 };
+module.exports.getAccount = function (req, res) {
+   Account.find({'_id': req.params.id}, function (err, account) {
+       if (err) {
+           res.send(err);
+       }
+       res.json({
+           account: account
+       });
+
+   });
+
+
+};
+
+module.exports.putAccount = function (req, res) {
+   var email = req.body.email;
+   var first_name = req.body.first_name;
+   var last_name = req.body.last_name;
+
+   Account.find({'_id': req.params.id}, function (err, account) {
+
+      var currentAccount = account[0];
+
+
+      currentAccount['email'] = email;
+      currentAccount['first_name'] = first_name;
+      currentAccount['last_name'] = last_name;
+
+
+      currentAccount.save(function (err) {
+           if (err) {
+               console.log('Error editing account: ' + err);
+               res.json({'error': 'putAccount'});
+           }
+
+           res.json({
+               account: currentAccount
+           });
+       });
+   });
+
+
+};

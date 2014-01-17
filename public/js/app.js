@@ -78,6 +78,13 @@ angular.module('addressBookApp', [
                 templateUrl: 'partials/register',
                 controller: 'RegisterController'
             }).
+            when('/editAccount/:id', {
+                templateUrl: 'partials/editAccount',
+                controller: 'EditAccountController',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            }).
             when('/contacts', {
                 templateUrl: 'partials/contacts',
                 controller: 'ContactController',
