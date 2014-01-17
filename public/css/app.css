@@ -117,8 +117,12 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     background-color: #78FA89;
 }
 .btn-lg {
-padding: 10px 16px;
-font-size: 18px;
-line-height: 1.33;
-border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
 }
+.row {
+    padding-bottom: 15px;
+}
+
