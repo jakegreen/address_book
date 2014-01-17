@@ -1,0 +1,23 @@
+div.starter-template
+div.container
+    div.content
+        table.table.table-hover
+            thead
+                tr
+                    th: a(href="", ng-click="predicate = 'product_name'; reverse=!reverse") Product Name
+                    th Description
+                    th: a(href="", ng-click="predicate = 'price'; reverse=!reverse") Price
+                    th
+                    th.text-center Select
+            tbody
+                tr(ng-repeat='product in products| orderBy:predicate:reverse')
+                    td.text-left {{ product.product_name }}
+                    td.text-left {{ product.description }}
+                    td.text-left {{ product.price }}
+<<<<<<< Updated upstream
+                    td: a.btn.btn-danger(href='javascript:void(0);', ng-click='deleteProduct(product._id)') Delete
+=======
+                    td: button.btn.btn-danger(href='javascript:void(0);', ng-click='deleteProduct(product._id)') Delete
+>>>>>>> Stashed changes
+                    td: a.btn.btn-default(href='editProduct/{{product._id}}') Edit
+

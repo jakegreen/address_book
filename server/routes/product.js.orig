@@ -4,4 +4,8 @@ module.exports = function(app, auth, product) {
     app.delete('/api/product/:id', auth, product.deleteProduct);
     app.get('/api/product/:id', auth, product.getProduct);
     app.put('/api/product/:id', auth, product.putProduct);
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 }
