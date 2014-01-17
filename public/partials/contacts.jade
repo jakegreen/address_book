@@ -1,33 +1,32 @@
 div.starter-template
-    h3 Customer List
+    h3.col-md-10 Customer List
     p
-    p There are {{contacts.length}} contacts in your database.
-        table.table.table-hover
-            thead
-                tr
-                    th: a(href="", ng-click="predicate = 'last_name'; reverse=!reverse") Name
-                    th: a(href="", ng-click="predicate = 'company'; reverse=!reverse") Company
-                    th Address
-                    th: a(href="", ng-click="predicate = 'location'; reverse=!reverse") Location
-                    th: a(href="", ng-click="predicate = 'zipcode'; reverse=!reverse") Zip Code
-                    th Phone Number
-                    th E-mail
-                    th
-                    th
-            tbody
-                tr(ng-repeat='contact in contacts| orderBy:predicate:reverse')
-                    td.text-left {{contact.last_name}}, {{contact.first_name}}
-                    td.text-left {{contact.company}}
-                    td.text-left {{contact.address}}
-                    td.text-left {{contact.city}}, {{contact.state}}
-                    td.text-left {{contact.zipcode}}
-                    td.text-left {{contact.phone}}
-                    td.text-left {{contact.email}}
-                    td: button.btn.btn-danger(href='javascript:void(0);', ng-click='deleteContact(contact._id)') Delete
-                    td: a.button.btn.btn-warning(href='editContact/{{contact._id}}') Edit
-                tr
-                    td: button.btn.btn-danger(type='button', ng-click='deleteContact($scope.deleteList)') Delete Selected
-                    td: a.button.btn.btn-success(href='addContact/') Add Contact
+    div.row
+        div.col-md-10 There are {{contacts.length}} contacts in your database.
+        div.col-md-2: a.button.btn.btn-success(href='addContact/') Add Contact
+    table.table.table-hover
+        thead
+            tr
+                th: a(href="", ng-click="predicate = 'last_name'; reverse=!reverse") Name
+                th: a(href="", ng-click="predicate = 'company'; reverse=!reverse") Company
+                th Address
+                th Location
+                th: a(href="", ng-click="predicate = 'zipcode'; reverse=!reverse") Zip Code
+                th Phone Number
+                th E-mail
+                th
+                th
+        tbody
+            tr(ng-repeat='contact in contacts| orderBy:predicate:reverse')
+                td.text-left {{contact.last_name}}, {{contact.first_name}}
+                td.text-left {{contact.company}}
+                td.text-left {{contact.address}}
+                td.text-left {{contact.city}}, {{contact.state}}
+                td.text-left {{contact.zipcode}}
+                td.text-left {{contact.phone}}
+                td.text-left {{contact.email}}
+                td: button.btn.btn-danger(href='javascript:void(0);', ng-click='deleteContact(contact._id)') Delete
+                td: a.button.btn.btn-warning(href='editContact/{{contact._id}}') Edit
 
 
 
