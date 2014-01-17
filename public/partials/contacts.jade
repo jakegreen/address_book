@@ -15,7 +15,6 @@ div.starter-template
                 th Phone Number
                 th E-mail
                 th
-                th
         tbody
             tr(ng-repeat='contact in contacts| orderBy:predicate:reverse')
                 td.text-left {{contact.last_name}}, {{contact.first_name}}
@@ -25,14 +24,11 @@ div.starter-template
                 td.text-left {{contact.zipcode}}
                 td.text-left {{contact.phone}}
                 td.text-left {{contact.email}}
-                td: button.btn.btn-danger(href='javascript:void(0);', ng-click='deleteContact(contact._id)') Delete
-                td: a.button.btn.btn-warning(href='editContact/{{contact._id}}') Edit
-
-
-
-
-
-    //div
-    //    pre Current Editable Contact
-    //        br
-    //        span(ng-bind="contact | json")
+                td
+                    .btn-group
+                        button.btn.dropdown-toggle(data-toggle="dropdown")
+                            i.glyphicon.glyphicon-cog
+                        ul.dropdown-menu
+                            li: a(href='editContact/{{contact._id}}') Edit
+                            li.divider
+                            li: a(href='javascript:void(0);', ng-click='deleteContact(contact._id)') Delete
