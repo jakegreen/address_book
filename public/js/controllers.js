@@ -117,7 +117,7 @@ angular.module('addressBookApp.controllers', [])
         $scope.deleteContact = function (contactId) {
             Restangular.one('api/contact/' + contactId).remove()
                 .then(function (data) {
-                    $scope.contacts = data.contacts;
+                    $scope.contacts = data.contacts[0];
                 }), function (response) {
                 $scope.errorMessage = response;
             };
@@ -127,13 +127,31 @@ angular.module('addressBookApp.controllers', [])
             $scope.target = '#' + contactId;
         }
     }])
+    .controller('EditContactController', ['$scope', '$http', '$routeParams', 'Restangular', '$window', function ($scope, $http, $routeParams, Restangular, $window) {
+
+        $scope.contactId=$routeParams.id;
+
+            Restangular.one('api/contact/' + contactId).customGET()
+                .then(function (data) {
+                    $scope.contact = data.contact[0];
+                });
+        $scope.editContact = function () {
+
+            Restangular.one('api/contact/' + contactId).customPUT($scope.contact)
+                .then(function (data) {
+                    $window.location = '/contacts';
+                });
+
+        }
+    }])
     .controller('AddContactController', ['$scope', '$window', 'contactConstants', 'Restangular', 'SessionService', function ($scope, $window, contactConstants, Restangular, SessionService) {
         $scope.contact = {};
         $scope.states = ["Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia","Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "North Carolina", "North Dakota","Nebraska","New Hampshire","New Jersey","New Mexico","Nevada","New York","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Virginia","Vermont","Washington","Wisconsin","West Virginia","Wyoming"];
-$scope.addContact = function () {
+        $scope.addContact = function () {
     var contact = {
         'first_name': $scope.contact.first_name,
         'last_name': $scope.contact.last_name,
+        'company': $scope.contact.company,
         'phone': $scope.contact.phone,
         'email': $scope.contact.email,
         'address': $scope.contact.address,
@@ -152,7 +170,7 @@ $scope.addContact = function () {
     };
 }
 
-$scope.hasError = function (field, validation) {
+    $scope.hasError = function (field, validation) {
     if (validation) {
         return $scope.contactForm[field].$dirty && $scope.contactForm[field].$error[validation];
     }
@@ -160,10 +178,10 @@ $scope.hasError = function (field, validation) {
     return $scope.contactForm[field].$dirty && $scope.contactForm[field].$invalid;
 };
 
-$scope.contactTitle = contactConstants['title'];
-$scope.contactSubTitle = contactConstants['subTitle'];
-}])
-.controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function ($scope, $window, Restangular, SessionService) {
+    $scope.contactTitle = contactConstants['title'];
+    $scope.contactSubTitle = contactConstants['subTitle'];
+    }])
+    .controller('ProductController', ['$scope', '$window', 'Restangular', 'SessionService', function ($scope, $window, Restangular, SessionService) {
     $scope.product = {};
 
     $scope.addProduct = function () {

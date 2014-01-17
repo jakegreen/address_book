@@ -1,0 +1,24 @@
+//
+   Created by student on 1/16/14.
+div.starter-template
+    h1 Edit Contact
+    form.form-register(role='form', name='contactEdit', ng-submit='editContact()', style='max-width: 300px;', ng-disabled='disabled')
+        .form-group
+            input.form-control(type='text', name='first_name', ng-model='contact.first_name')
+        .form-group
+            input.form-control(type='text', name='last_name', ng-model='contact.last_name')
+        .form-group
+            input.form-control(type='email', name='email', ng-model='contact.email')
+        .form-group
+            input.form-control(type='text', name='phone', ng-model='contact.phone')
+        .form-group
+            input.form-control(type='text', name='address', ng-model='contact.address')
+        .form-group
+            input.form-control(type='text', name='city', ng-model='contact.city')
+        .form-group
+            select.form-control(name='state', ng-model='contact.state')
+        .form-group
+            input.form-control(type='text', name='zipcode', ng-model='contact.zipcode')
+        .btn-toolbar
+            button.btn.btn-info(type='submit') Submit
+            button.btn.btn-default(href='/', type="button") Cancel

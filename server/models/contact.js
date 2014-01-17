@@ -8,6 +8,7 @@ var contactSchema = new Schema(
         email: String,
         first_name: String,
         last_name: String,
+        company: String,
         phone: String,
         address: String,
         city: String,

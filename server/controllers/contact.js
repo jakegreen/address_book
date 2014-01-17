@@ -34,6 +34,7 @@ module.exports.addContact = function (req, res) {
     var contact = new Contact ({
         'first_name': req.body.first_name,
         'last_name': req.body.last_name,
+        'company': req.body.company,
         'phone': req.body.phone,
         'email': req.body.email,
         'address': req.body.address,
@@ -55,6 +56,61 @@ module.exports.addContact = function (req, res) {
     });
 };
 
+module.exports.getContact = function (req, res) {
+   Contact.find({'_id': req.params.id}, function (err, contact) {
+       if (err) {
+           res.send(err);
+       }
+       res.json({
+           contact: contact
+       });
+
+   });
+
+
+};
+
+module.exports.putContact = function (req, res) {
+   var first_name = req.body.first_name;
+   var last_name = req.body.last_name;
+   var company = req.body.company;
+   var phone = req.body.phone;
+   var email = req.body.email;
+   var address = req.body.address;
+   var city = req.body.city;
+   var state = req.body.state;
+   var zipcode = req.body.zipcode;
+
+   Contact.find({'_id': req.params.id}, function (err, contact) {
+
+      var currentContact = contact[0];
+
+
+      currentContact['first_name'] = first_name;
+      currentContact['last_name'] = last_name;
+      currentContact['company'] = company;
+      currentContact['phone'] = phone;
+      currentContact['email'] = email;
+      currentContact['address'] = address;
+      currentContact['city'] = city;
+      currentContact['state'] = state;
+      currentContact['zipcode'] = zipcode;
+
+
+      currentContact.save(function (err) {
+           if (err) {
+               console.log('Error editing contact: ' + err);
+               res.json({'error': 'putContact'});
+           }
+
+           res.json({
+               contact: currentContact
+           });
+       });
+   });
+
+
+};
 module.exports.deleteContact = function (req, res) {
     Contact.find({'_id': req.params.id}, function (err, contacts) {
         if (err) {

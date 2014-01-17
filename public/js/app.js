@@ -92,6 +92,13 @@ angular.module('addressBookApp', [
                     loggedin: checkLoggedin
                 }
             }).
+            when('/editContact/:id', {
+                templateUrl: 'partials/editContact',
+                controller: 'EditContactController',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            }).
             when('/products', {
                 templateUrl: 'partials/products',
                 controller: 'ProductController',
