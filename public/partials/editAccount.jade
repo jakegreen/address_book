@@ -1,0 +1,20 @@
+//
+   Created by student on 1/17/14.
+div.starter-template
+
+    h1 Edit Account Info
+    form.form-register(role='form', name='registerForm', ng-submit='editAccount()', style='max-width: 300px;', ng-disabled='disabled')
+        .form-group
+            input.form-control(type='text', name='email', ng-model='account.email', required)
+
+        .form-group
+            input.form-control(type='text', name='first_name', ng-model='account.first_name', required)
+            span(ng-show="hasError('first_name')") First name is required
+            span(ng-show="errorFirstName") {{ errorFirstName }}
+        .form-group
+            input.form-control(type='text', name='last_name', ng-model='account.last_name', required)
+            span(ng-show="hasError('last_name')") Last name is required
+            span(ng-show="errorLastName") {{ errorLastName }}
+        .btn-toolbar
+            button.btn.btn-info(type='submit') Submit
+            a.button.btn.btn-default(href='/home', type="button") Cancel

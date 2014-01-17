@@ -5,6 +5,7 @@
 angular.module('addressBookApp.controllers', [])
     .controller('BaseController', ['$scope', '$location', '$window', 'Restangular', 'SessionService', function($scope, $location, $window, Restangular, SessionService) {
         $scope.userSession = SessionService.getUserSession();
+        $scope.accountId = SessionService.getUserSession()._id;
 
         $scope.isActive = function(viewLocation) {
             if (typeof viewLocation == "object") {
@@ -67,8 +68,7 @@ angular.module('addressBookApp.controllers', [])
 
         $scope.loginTitle = loginTitle;
     }])
-    .controller('IndexController', ['$scope', '$http', function($scope, $http) {
-
+    .controller('IndexController', ['$scope', '$http', 'SessionService', function($scope, $http, SessionService) {
     }])
     .controller('RegisterController', ['$scope', '$window', 'registerConstants', 'Restangular', 'SessionService', function($scope, $window, registerConstants, Restangular, SessionService) {
         $scope.user = {}
@@ -104,7 +104,27 @@ angular.module('addressBookApp.controllers', [])
         $scope.registerTitle = registerConstants['title'];
         $scope.registerSubTitle = registerConstants['subTitle'];
     }])
-    .controller('ContactController', ['$scope', 'Restangular', 'SessionService', function($scope, Restangular, SessionService ) {
+
+    .controller('EditAccountController', ['$scope', '$http', '$routeParams', 'SessionService','Restangular', '$window', function ($scope, $http, $routeParams, SessionService, Restangular, $window) {
+
+        $scope.accountId = SessionService.getUserSession()._id;
+
+        Restangular.one('api/account/' + $scope.accountId).customGET()
+            .then(function(data) {
+                $scope.account = data.account[0];
+            });
+
+        $scope.editAccount = function() {
+
+            Restangular.one('api/account/' + $scope.accountId).customPUT($scope.account)
+                .then(function(data) {
+                    $window.location = '/accounts';
+                });
+
+        }
+    }])
+
+    .controller('ContactController', ['$scope','Restangular', 'SessionService', function($scope, Restangular, SessionService ) {
         Restangular.all('api/contacts').customGET()
             .then(function(data) {
                 $scope.contacts = data.contacts;
