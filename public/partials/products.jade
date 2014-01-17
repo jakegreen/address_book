@@ -14,7 +14,6 @@ div.container
                     td.text-left {{ product.product_name }}
                     td.text-left {{ product.description }}
                     td.text-left {{ product.price }}
-                    td: button.btn.btn-danger(href='javascript:void(0);', ng-click='deleteProduct(product._id)') Delete
-                    td.text-center: input(type='checkbox', checked=false, ng-value="ids", id="{{product._id}}")
-        .btn-toolbar
-            button.btn.btn-danger(type='button', value='submit') Delete
+                    td: a.btn.btn-danger(href='javascript:void(0);', ng-click='deleteProduct(product._id)') Delete
+                    td: a.btn.btn-default(href='editProduct/{{product._id}}') Edit
+

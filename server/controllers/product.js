@@ -49,3 +49,72 @@ module.exports.addProduct = function (req, res) {
         });
     });
 };
+
+module.exports.getProduct = function (req, res) {
+    Product.find({'_id': req.params.id}, function (err, product) {
+        if (err) {
+            res.send(err);
+        }
+        res.json({
+            product: product
+        });
+
+    });
+
+
+};
+
+module.exports.putProduct = function (req, res) {
+    var price = req.body.price;
+    var description = req.body.description;
+    var product_name = req.body.product_name;
+
+    Product.find({'_id': req.params.id}, function (err, product) {
+
+       var currentProduct = product[0];
+
+
+       currentProduct['price'] = price;
+       currentProduct['description'] = description;
+       currentProduct['product_name'] = product_name;
+
+       currentProduct.save(function (err) {
+            if (err) {
+                console.log('Error editing product: ' + err);
+                res.json({'error': 'putProduct'});
+            }
+
+            res.json({
+                product: currentProduct
+            });
+        });
+    });
+
+
+};
+
+module.exports.deleteProduct = function (req, res) {
+    Product.find({'_id': req.params.id}, function (err, product) {
+        if (err) {
+            res.send(err);
+        }
+
+        product.forEach(function (product) {
+            product.remove(function (err, response) {
+                if (err) {
+                    res.send(err);
+                }
+
+                Product.find({}, function (err, products) {
+                    if (err) {
+                        res.send(err);
+                    }
+
+                    res.json({
+                        products: products
+                    });
+                });
+            })
+        });
+    });
+};
