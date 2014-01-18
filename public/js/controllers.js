@@ -5,8 +5,11 @@
 angular.module('addressBookApp.controllers', [])
     .controller('BaseController', ['$scope', '$location', '$window', 'Restangular', 'SessionService', function($scope, $location, $window, Restangular, SessionService) {
         $scope.userSession = SessionService.getUserSession();
-        $scope.accountId = SessionService.getUserSession()._id;
-
+        if (SessionService.hasOwnProperty('_id')) {
+            $scope.accountId = SessionService.getUserSession()._id;
+        }
+/* We need to watch SessionService and update accountId once SessionService has _id.*/
+        
         $scope.isActive = function(viewLocation) {
             if (typeof viewLocation == "object") {
                 var active = false;
